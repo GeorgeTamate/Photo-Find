@@ -6,7 +6,7 @@
 
 <ion-content padding>
   <h2>Hello Ionic + TypeScript + Angular2</h2>
-  <button ion-button full (click)="makeRequest()">Make Request</button>
+  <button ion-button full (click)="makeRequestToServer()">Make Request</button>
   <button ion-button (click)="takePicture()">Camera</button>
   <p>
     <img *ngIf="base64Image" [src]="base64Image" />
