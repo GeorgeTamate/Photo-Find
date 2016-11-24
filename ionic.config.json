@@ -6,7 +6,7 @@
   "proxies": [
     {
       "path": "/api",
-      "proxyUrl": "http://fb7fce0c.ngrok.io/"
+      "proxyUrl": "http://8afba4a9.ngrok.io/"
     }
   ]
 }

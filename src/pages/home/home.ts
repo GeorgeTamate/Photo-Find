@@ -6,7 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { NavController } from 'ionic-angular';
 import { Camera } from 'ionic-native';
 
-//
+// Custom
 import { SimpleHttp } from '../../shared/services/include'
 
 // 3rd Party
@@ -40,23 +40,6 @@ export class HomePage {
       });
   }
 
-  makeRequestToServer() {
-    this.httpApi.getToServer().subscribe(
-      data => {
-        console.log('success');
-        console.log('data', data.results);
-        this.people = data.results;
-      },
-      err => {
-        // Uh Oh
-        console.log('err', err);
-      },
-      () => {
-        console.log('complete');
-      });
-    console.log('HEY! PUCMM Server!!!');
-  }
-
   takePicture() {
     // getPicture options
     let options = {
@@ -75,7 +58,6 @@ export class HomePage {
       // If it's base64:
       this.base64Image = "data:image/jpeg;base64," + imageData;
       // this.base64Image = imageData;
-      this.makeRequestToServer();
       console.log('imgData', imageData);
       
       this.httpApi.post(imageData).subscribe(
@@ -89,4 +71,11 @@ export class HomePage {
       console.log('err', err);
     });
   }
+
+  toggleMenu() {
+
+  }
+
+
+
 }

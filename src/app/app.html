@@ -1,0 +1,35 @@
+<ion-menu id="unauthenticated" side="left" [content]="mycontent">
+    <ion-content>
+        <ion-list>
+            <ion-list-header>
+                You're Logged Out
+            </ion-list-header>
+            <button ion-button full menuClose>
+                    Exit Menu
+            </button>
+            <button ion-item menuClose color="primary" (click)="logInToFacebook()">
+                <ion-icon item-left name="logo-facebook"></ion-icon>
+                Login with Facebook
+            </button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-menu id="authenticated" side="left" [content]="mycontent">
+    <ion-content>
+        <ion-list>
+            <ion-list-header>
+                You're Logged In
+            </ion-list-header>
+            <button ion-button full menuClose>
+                    Exit Menu
+            </button>
+            <button ion-item menuClose color="primary" (click)="logOutFromFacebook()">
+                <ion-icon item-left name="logo-facebook"></ion-icon>
+                Log Out From Facebook
+            </button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav #mycontent [root]="rootPage"></ion-nav>

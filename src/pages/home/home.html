@@ -1,12 +1,17 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>
+      Home
+    </ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <h2>Hello Ionic + TypeScript + Angular2</h2>
-  <button ion-button full (click)="makeRequestToServer()">Make Request</button>
+  <button ion-button full (click)="makeRequest()">Make Request</button>
   <button ion-button (click)="takePicture()">Camera</button>
   <p>
     <img *ngIf="base64Image" [src]="base64Image" />

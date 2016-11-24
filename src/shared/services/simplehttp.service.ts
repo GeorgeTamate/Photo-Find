@@ -17,22 +17,23 @@ export class SimpleHttp {
       });
   }
 
-  getToServer() {
-    return this.http.get('http://8afba4a9.ngrok.io')
-      .map((response: Response) => {
-        return response.json();
-      });
-  }
-
   post(data) {
     var params = 'pic=' + data;
   	var headers = new Headers();
   	headers.append('Content-Type', 'application/x-www-form-urlencoded');
-
-    return this.http.post('http://8afba4a9.ngrok.io', params, {headers: headers})
+    return this.http.post('http://3d510f6d.ngrok.io', params, {headers: headers})
       .map((response: Response) => {
         return response.json();
       });
 
-  } 
+  }
+
+  requestLoginFacebook() {
+    return this.http.get('https://randomuser.me/api/?results=10')
+      .map((response: Response) => {
+        return response.json();
+      });
+
+  }
+
 }
