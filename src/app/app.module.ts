@@ -9,7 +9,19 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
 // providers
-import { SimpleHttp } from '../shared/services/include'
+import { SimpleHttp, AuthService } from '../shared/services/include'
+import { AuthConfig, AuthHttp } from 'angular2-jwt';
+import { Http } from '@angular/http';
+import { Storage } from '@ionic/storage';
+
+let storage: Storage = new Storage();
+
+export function getAuthHttp(http) {
+  return new AuthHttp(new AuthConfig({
+    globalHeaders: [{ 'Accept': 'application/json' }],
+    tokenGetter: (() => storage.get('id_token'))
+  }), http);
+}
 
 @NgModule({
   declarations: [
@@ -30,6 +42,12 @@ import { SimpleHttp } from '../shared/services/include'
     HomePage,
     TabsPage
   ],
-  providers: [SimpleHttp]
+  providers: [SimpleHttp,
+    AuthService,
+    {
+      provide: AuthHttp,
+      useFactory: getAuthHttp,
+      deps: [Http]
+    }]
 })
 export class AppModule {}

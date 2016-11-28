@@ -4,6 +4,7 @@
             <ion-list-header>
                 You're Logged Out
             </ion-list-header>
+            <!--
             <button ion-item color="primary" full menuClose>
                 <ion-icon item-left name="md-arrow-round-back"></ion-icon>
                 Exit Menu
@@ -11,6 +12,14 @@
             <button ion-item menuClose color="primary" (click)="logInToFacebook()">
                 <ion-icon item-left name="logo-facebook"></ion-icon>
                 Login with Facebook
+            </button>
+            -->
+            <button *ngIf="!auth.authenticated()" ion-item menuClose color="primary" (click)="auth.login()">
+                <ion-icon item-left name="logo-facebook"></ion-icon>
+                Login with Facebook
+            </button>
+            <button ion-item menuClose detail-none>
+                Close Menu
             </button>
         </ion-list>
     </ion-content>
@@ -26,10 +35,12 @@
                 <ion-icon item-left name="md-arrow-round-back"></ion-icon>
                 Exit Menu
             </button>
+            <!--
             <button ion-item menuClose color="primary" (click)="logOutFromFacebook()">
                 <ion-icon item-left name="logo-facebook"></ion-icon>
                 Log Out From Facebook
             </button>
+            -->
         </ion-list>
     </ion-content>
 </ion-menu>
