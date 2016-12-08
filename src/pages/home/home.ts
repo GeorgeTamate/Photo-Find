@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 // Ionic
-import { NavController, ToastController, Events, ActionSheetController, ModalController } from 'ionic-angular';
+import { NavController, ToastController, Events, ActionSheetController, ModalController, NavParams } from 'ionic-angular';
 import { Camera } from 'ionic-native';
 
 // Custom
@@ -17,8 +17,10 @@ import { SimpleHttp, AuthService } from '../../shared/services/include'
 })
 export class HomePage {
   public people: any;
+  public images: any;
   public test: boolean = false;
   public base64Image: string;
+  public imgPrefix: string = 'data:image/jpeg;base64,';
   constructor(
     public navCtrl: NavController,
     public sanitizer: DomSanitizer,
@@ -37,12 +39,33 @@ export class HomePage {
     });
   }
 
+  presentProfileModal() {
+   let profileModal = this.modalCtrl.create(Profile, { userId: 8675309 });
+   profileModal.present();
+ }
+
   makeRequest() {
     this.httpApi.get().subscribe(
       data => {
         console.log('success');
         console.log('data', data.results);
         this.people = data.results;
+      },
+      err => {
+        // Uh Oh
+        console.log('err', err);
+      },
+      () => {
+        console.log('complete');
+      });
+  }
+
+  makeRequestPic() {
+    this.httpApi.getPictures().subscribe(
+      data => {
+        console.log('success');
+        console.log('data', data);
+        this.images = data;
       },
       err => {
         // Uh Oh
@@ -61,7 +84,7 @@ export class HomePage {
       destinationType: Camera.DestinationType.DATA_URL,
       //sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
       sourceType: Camera.PictureSourceType.CAMERA,
-      allowEdit: true,
+      allowEdit: false,
       encodingType: Camera.EncodingType.JPEG,
       saveToPhotoAlbum: false
     };
@@ -181,8 +204,8 @@ export class HomePage {
       console.log('from' + sourceType);
       console.log('imgData', imageData);
       console.log('');
-      
-      this.httpApi.post(imageData).subscribe(
+
+      this.httpApi.postCreate(imageData).subscribe(
         data => { console.log('POSTing on Server'); },
         err => {console.log('err', err);},
         () => { console.log('POSTed on Server'); }
@@ -195,6 +218,10 @@ export class HomePage {
   }
 }
 
+@Component({})
+class Profile {
+  constructor(params: NavParams) {
+    console.log('UserId', params.get('userId'));
+  }
 
-
-
+}

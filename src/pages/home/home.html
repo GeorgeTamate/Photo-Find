@@ -10,9 +10,46 @@
 </ion-header>
 
 <ion-content padding>
-  <button ion-button (click)="unsecure()">Un-Secure</button>
-  <button ion-button (click)="secure()">Secure</button>
-  <button ion-button (click)="presentPhotoModal()">Modal</button>
+  <button ion-button full (click)="unsecure()">No Auth Request</button>
+  <button ion-button full (click)="secure()">Auth Request</button>
+  <button ion-button full (click)="makeRequest()">Make Request</button>
+  <button ion-button full (click)="makeRequestPic()">Make Request Pictures</button>
+  
+  <ion-list>
+    <ion-item *ngFor="let person of people; let i = index">
+      <ion-avatar item-left>
+        <img src="{{ person.picture.thumbnail }}">
+      </ion-avatar>
+      <h2>{{ person.name.title }} {{ person.name.first }} {{ person.name.last }}</h2>
+      <p>{{ person.email }}</p>
+    </ion-item>
+  </ion-list>
+
+  <ion-grid>
+  <ion-row *ngFor="let image of images; let i = index">
+    <ion-col *ngIf="i%2 == 0">
+      <ion-avatar item-left>
+        <img src="data:image/jpeg;base64,{{image.Photo}}" />
+      </ion-avatar>
+      <p><strong>{{ image.Description }}</strong></p>
+    </ion-col>
+    <ion-col *ngIf="(i+1) < images.length && (i+1)%2 != 0">
+      <ion-avatar item-left>
+        <img src="data:image/jpeg;base64,{{ images[i+1].Photo }}">
+      </ion-avatar>
+      <p><strong>{{ images[i+1].Description }}</strong></p>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+  
+
+  <!--<ion-list>
+    <ion-item *ngFor="let image of images; let i = index">
+      <img src="data:image/jpeg;base64,{{image.Photo}}" />
+      <h2>{{ image.Description }}</h2>
+    </ion-item>
+  </ion-list>-->
+  
   <div *ngIf="auth.authenticated()">
     <ion-card>
       <ion-item *ngIf="auth.user">
@@ -25,6 +62,7 @@
     </ion-card>
     <button ion-button (click)="auth.logout()">Log out</button>
   </div>
+
   <div *ngIf="base64Image">
     <h2>Preview</h2>
     <p>

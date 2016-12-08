@@ -7,6 +7,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { SettingsPage } from '../pages/settings/settings';
 
 // providers
 import { SimpleHttp, AuthService } from '../shared/services/include'
@@ -29,6 +30,7 @@ export function getAuthHttp(http) {
     AboutPage,
     ContactPage,
     HomePage,
+    SettingsPage,
     TabsPage
   ],
   imports: [
@@ -40,6 +42,7 @@ export function getAuthHttp(http) {
     AboutPage,
     ContactPage,
     HomePage,
+    SettingsPage,
     TabsPage
   ],
   providers: [SimpleHttp,

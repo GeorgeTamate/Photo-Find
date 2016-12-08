@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { Platform, MenuController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, MenuController, Nav } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { TabsPage } from '../pages/tabs/tabs';
+import { SettingsPage } from '../pages/settings/settings';
 
 import { SimpleHttp, AuthService } from '../shared/services/include'
 
@@ -11,9 +12,10 @@ import { SimpleHttp, AuthService } from '../shared/services/include'
   templateUrl: 'app.html'
 })
 export class MyApp {
+  @ViewChild(Nav) nav: Nav;
   authenticated: boolean = false;
   rootPage = TabsPage;
-
+  settingsPage = SettingsPage;
   constructor(
     platform: Platform,
     public menuCtrl: MenuController,
@@ -30,6 +32,10 @@ export class MyApp {
 
       console.log('Hello from TypeScript');
     });
+  }
+
+  pushSettingsPage(){
+    this.nav.push(this.settingsPage);
   }
 
   openMenu() {

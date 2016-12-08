@@ -1,12 +1,12 @@
 {
   "name": "photo_find",
-  "app_id": "990e79ba",
+  "app_id": "00dc65ec",
   "v2": true,
   "typescript": true,
   "proxies": [
     {
       "path": "/api",
-      "proxyUrl": "http://8afba4a9.ngrok.io/"
+      "proxyUrl": "http://b8358594.ngrok.io"
     }
   ]
 }
